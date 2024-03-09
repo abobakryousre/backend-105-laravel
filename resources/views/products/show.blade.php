@@ -4,12 +4,12 @@
 <div class="text-center mt-4">
     <div class="card">
         <div class="card-header">
-            {{ $product['id'] }}
+            {{ $product->id }}
         </div>
         <div class="card-body">
             <blockquote class="blockquote mb-0">
-            {{ $product['name'] }}
-            <footer class="blockquote-footer">Price:  <cite title="Source Title">{{ $product['price'] }}</cite></footer>
+            {{ $product->name }}
+            <footer class="blockquote-footer">Price:  <cite title="Source Title">{{ $product->price }}</cite></footer>
             </blockquote>
         </div>
         </div>

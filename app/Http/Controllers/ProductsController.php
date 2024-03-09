@@ -10,24 +10,17 @@ class ProductsController extends Controller
     public function index()
     {
         # select * from products 
-        // $allProducts = Product::all();
-        $allProducts = Product::select("*")->get();
-        dd($allProducts);
-
+        $allProducts = Product::all();
+        // $allProducts = Product::select("*")->get();
         return view('products.index', ["products" => $allProducts]);
     }
 
     public function show($productID)
     {
         # select * from products where id = $productID
-        $allProducts = [
-            ["id" => 1, "name" => "car", "price" => 120000, "created_at" => "2024-03-02 12:00:00"],
-            ["id" => 2, "name" => "iphone 12", "price" => 22000, "created_at" => "2024-03-02 13:00:00"],
-            ["id" => 3, "name" => "smart watch", "price" => 8000, "created_at" => "2024-03-02 14:00:00"],
-            ["id" => 4, "name" => "Macbook 16", "price" => 98000, "created_at" => "2024-03-02 15:00:00"]
-        ];
-        $res = array_filter($allProducts, fn ($product) => $product['id'] == $productID);
-        $product = [...$res][0];
+
+        $product = Product::find($productID);
+        // $product = Product::where('id', $productID)->first();
         return view('products.show', ["product" => $product]);
     }
 
