@@ -67,29 +67,28 @@ class ProductsController extends Controller
         return to_route('products.index');
     }
 
-    public function edit($productID)
+    public function edit(Product $product)
     {
         #get product 
         # select * from products where id = $productID
-        $allProducts = [
-            ["id" => 1, "name" => "car", "price" => 120000, "created_at" => "2024-03-02 12:00:00"],
-            ["id" => 2, "name" => "iphone 12", "price" => 22000, "created_at" => "2024-03-02 13:00:00"],
-            ["id" => 3, "name" => "smart watch", "price" => 8000, "created_at" => "2024-03-02 14:00:00"],
-            ["id" => 4, "name" => "Macbook 16", "price" => 98000, "created_at" => "2024-03-02 15:00:00"]
-        ];
-        $res = array_filter($allProducts, fn ($product) => $product['id'] == $productID);
-        $product = [...$res][0];
+        // $product = Product::find($productID);
+
         return view('products.edit', ["product" => $product]);
         # return edit view with product data
 
     }
 
 
-    public function update($productID)
+    public function update(Request $request, $productID)
     {
         # get product 
-        $productName = request()->name;
-        $productPrice = request()->price;
+        // $productName = request()->name;
+        // $productPrice = request()->price;
+
+        $product = Product::find($productID);
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->save();
 
 
         return to_route('products.show', ['product' => $productID]);
