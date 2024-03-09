@@ -19,7 +19,6 @@
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
-                        
                         <tr>
                             <th scope="row">{{ $product->id }}</th>
                             <td>{{ $product->name }}</td>

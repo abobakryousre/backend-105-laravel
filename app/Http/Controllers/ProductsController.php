@@ -10,7 +10,10 @@ class ProductsController extends Controller
     public function index()
     {
         # select * from products 
-        $allProducts = Product::all();
+        // $allProducts = Product::all();
+        $allProducts = Product::select("*")->get();
+        dd($allProducts);
+
         return view('products.index', ["products" => $allProducts]);
     }
 
