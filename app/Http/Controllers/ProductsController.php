@@ -15,12 +15,13 @@ class ProductsController extends Controller
         return view('products.index', ["products" => $allProducts]);
     }
 
-    public function show($productID)
+    public function show(Product $product)
     {
         # select * from products where id = $productID
 
-        $product = Product::find($productID);
+        // $product = Product::find($productID);
         // $product = Product::where('id', $productID)->first();
+
         return view('products.show', ["product" => $product]);
     }
 
