@@ -28,7 +28,8 @@ Route::get("/home", function () {
     return view('home', ["name" => "tamer", "role" => "admin", "age" => 12]);
 });
 
-Route::get("/products", [ProductsController::class, 'index'])->name('products.index');
+// Route::get("/products", [ProductsController::class, 'index'])->name('products.index');
+Route::get("/products", ProductsController::class . '@index')->name('products.index');
 Route::post("/products", [ProductsController::class, 'store'])->name('products.store');
 Route::get('/products/create', [ProductsController::class, 'create'])->name('products.create');
 Route::get("/products/{product}", [ProductsController::class, 'show'])->name('products.show');
