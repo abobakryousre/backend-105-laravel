@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -9,12 +10,7 @@ class ProductsController extends Controller
     public function index()
     {
         # select * from products 
-        $allProducts = [
-            ["id" => 1, "name" => "car", "price" => 120000, "created_at" => "2024-03-02 12:00:00"],
-            ["id" => 2, "name" => "iphone 12", "price" => 22000, "created_at" => "2024-03-02 13:00:00"],
-            ["id" => 3, "name" => "smart watch", "price" => 8000, "created_at" => "2024-03-02 14:00:00"],
-            ["id" => 4, "name" => "Macbook 16", "price" => 98000, "created_at" => "2024-03-02 15:00:00"]
-        ];
+        $allProducts = Product::all();
         return view('products.index', ["products" => $allProducts]);
     }
 
