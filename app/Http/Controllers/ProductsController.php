@@ -30,11 +30,22 @@ class ProductsController extends Controller
     {
         return view('products.create');
     }
-    public function store()
+    public function store(Request $request)
     {
-        $reqObject = request();
+
         // dd($reqObject->price);
-        // get all requet data 
+        // get all request data 
+        $productName = $request->name;
+        $productPrice = $request->price;
+        // $newProduct  = new Product;
+        // $newProduct->name = $productName;
+        // $newProduct->price = $productPrice;
+        // $newProduct->save();
+        Product::create([
+            'name' => $request->name,
+            'price' => $request->price
+        ]);
+
 
         // validate 
         // inset into products (id,name,price,create_at);
