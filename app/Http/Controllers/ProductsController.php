@@ -47,6 +47,8 @@ class ProductsController extends Controller
     public function destroy($productID)
     {
         // get prod id 
+        $product = Product::find($productID);
+        $product->delete();
         // delete form prdoucs where id = productID
 
         //
