@@ -13,5 +13,17 @@
             </blockquote>
         </div>
         </div>
+
+        <div class="card">
+            <div class="card-header">
+                Category
+            </div>
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                {{ $product->category->name }}
+
+                </blockquote>
+            </div>
+            </div>
 </div>
 @endsection

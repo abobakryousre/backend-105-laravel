@@ -11,6 +11,7 @@
                     <th scope="col"># ID</th>
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Created At</th>
                     <th scope="col">Updated At</th>
                     <th scope="col">Actions</th>
@@ -19,10 +20,12 @@
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
+                    
                         <tr>
                             <th scope="row">{{ $product->id }}</th>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->price }}</td>
+                            <td>{{ $product->category ?  $product->category->name : "noExist" }}</td>
                             <td>{{ $product->created_at }}</td>
                             <td>{{ $product->updated_at }}</td>
                             <td>
