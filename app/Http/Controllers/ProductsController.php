@@ -63,7 +63,7 @@ class ProductsController extends Controller
         // inset into products (id,name,price,create_at);
         //redirect to index view
 
-        return to_route('products.index')->with("requestStatus", "product created successfully");
+        return to_route('products.index')->with("requestStatus", "$request->name created successfully");
     }
 
 
