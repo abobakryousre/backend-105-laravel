@@ -9,10 +9,13 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        // dd($request->query('q'));
         # select * from products 
-        $allProducts = Product::latest()->paginate(10);
+        # Where name LIKE "%$request->query('q')%"
+
+        $allProducts = Product::latest()->filter($request->query)->paginate(10);
         // $allProducts = Product::select("*")->get();
         return view('products.index', ["products" => $allProducts]);
     }

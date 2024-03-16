@@ -11,6 +11,10 @@
 
 @endif
 
+<form class="d-flex" role="search" action="{{ route('products.index') }}" method="GET">
+  <input class="form-control me-2" placeholder="Search" aria-label="Search" name="q">
+  <button class="btn btn-outline-primary" type="submit">Search</button>
+</form>
         <div class="text-center mt-4">
 
             <div class="mt-4">
@@ -36,7 +40,10 @@
                             <th scope="row">{{ $product->id }}</th>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->price }}</td>
-                            <td>{{ $product->category ?  $product->category->name : "noExist" }}</td>
+                            <td>
+                              {{-- <a href="/products?category_id={{$product->category->id ?? 1 }}">{{ $product->category ?  $product->category->name : "noExist" }}</a> --}}
+                              <a href="{{route('products.index', ["category_id" =>$product->category->id ?? 1 ]) }}">{{ $product->category ?  $product->category->name : "noExist" }}</a>
+                            </td>
                             <td>{{ $product->created_at }}</td>
                             <td>{{ $product->updated_at }}</td>
                             <td>
