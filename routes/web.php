@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Middleware\TestMiddleWare;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\CheckRequest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,36 +18,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-})->middleware('test');
+    // return view('welcome');
+    return "<h1>hello</h1>";
+})->middleware(CheckRequest::class);
 
 
-Route::get("/profile", function () {
-    return "<h1>profile page</h1>";
-})->middleware(TestMiddleWare::class);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::get("/home", function () {
-    return view('home', ["name" => "tamer", "role" => "admin", "age" => 12]);
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resources([
+        'products' => ProductsController::class,
+        'category' => CategoryController::class
+    ]);
 });
 
-
-// Route::get("/products", [ProductsController::class, 'index'])->name('products.index');
-// // Route::get("/products", ProductsController::class . '@index')->name('products.index');
-// Route::post("/products", [ProductsController::class, 'store'])->name('products.store');
-// Route::get('/products/create', [ProductsController::class, 'create'])->name('products.create');
-// Route::get("/products/{product}", [ProductsController::class, 'show'])->name('products.show');
-// Route::get('/products/{product}/edit', [ProductsController::class, "edit"])->name('products.edit');
-// Route::patch('/products/{product}/edit', [ProductsController::class, "update"])->name('products.update');
-// Route::delete("/products/{product}", [ProductsController::class, 'destroy'])->name('products.destroy');
-Route::resources([
-    'products' => ProductsController::class,
-    'category' => CategoryController::class
-]);
-
-# development steps 
-# 1 - define route 
-# 2- create controller, and  actions  inside controller 
-# 3- create view
-# -  (first static view Just style with static data) 
-# - replace static data with real data from DB
+require __DIR__ . '/auth.php';
