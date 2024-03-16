@@ -25,5 +25,7 @@
                 </blockquote>
             </div>
             </div>
+
+            <img src="{{asset("storage/{$product->photo}")}}" alt="" width="80" height="80">
 </div>
 @endsection

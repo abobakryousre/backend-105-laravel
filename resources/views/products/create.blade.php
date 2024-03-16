@@ -17,7 +17,7 @@
 
 
 
-<form action="{{route('products.store') }}" method="POST">
+<form action="{{route('products.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <div class="mb-3">
@@ -40,6 +40,11 @@
         {{ $message }}
       </div>
       @enderror
+
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Product Photo</label>
+        <input type="file" class="form-control" id="exampleInputEmail1" name="photo">
+      </div>
       <div class="mb-3">
         <select class="form-control"  name="category" id="">      
         @foreach($categories as $category)

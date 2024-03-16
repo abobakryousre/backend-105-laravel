@@ -31,18 +31,18 @@ Route::get("/home", function () {
 });
 
 
-Route::get("/products", [ProductsController::class, 'index'])->name('products.index');
-// Route::get("/products", ProductsController::class . '@index')->name('products.index');
-Route::post("/products", [ProductsController::class, 'store'])->name('products.store');
-Route::get('/products/create', [ProductsController::class, 'create'])->name('products.create');
-Route::get("/products/{product}", [ProductsController::class, 'show'])->name('products.show');
-Route::get('/products/{product}/edit', [ProductsController::class, "edit"])->name('products.edit');
-Route::patch('/products/{product}/edit', [ProductsController::class, "update"])->name('products.update');
-Route::delete("/products/{product}", [ProductsController::class, 'destroy'])->name('products.destroy');
-// Route::resources([
-//     'products' => ProductsController::class,
-//     'category' => CategoryController::class
-// ]);
+// Route::get("/products", [ProductsController::class, 'index'])->name('products.index');
+// // Route::get("/products", ProductsController::class . '@index')->name('products.index');
+// Route::post("/products", [ProductsController::class, 'store'])->name('products.store');
+// Route::get('/products/create', [ProductsController::class, 'create'])->name('products.create');
+// Route::get("/products/{product}", [ProductsController::class, 'show'])->name('products.show');
+// Route::get('/products/{product}/edit', [ProductsController::class, "edit"])->name('products.edit');
+// Route::patch('/products/{product}/edit', [ProductsController::class, "update"])->name('products.update');
+// Route::delete("/products/{product}", [ProductsController::class, 'destroy'])->name('products.destroy');
+Route::resources([
+    'products' => ProductsController::class,
+    'category' => CategoryController::class
+]);
 
 # development steps 
 # 1 - define route 

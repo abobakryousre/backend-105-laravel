@@ -38,7 +38,7 @@ class ProductsController extends Controller
     }
     public function store(StoreProductRequest $request)
     {
-
+        // dd($request->file('photo')->store('public/products'));
         // dd($reqObject->price);
         // get all request data 
         $productName = $request->name;

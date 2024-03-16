@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')   
 
+
+
 @if(session()->has('requestStatus'))
 <div x-data="{ open: true }" x-init="setTimeout( () => open = false,3000)" >
   
