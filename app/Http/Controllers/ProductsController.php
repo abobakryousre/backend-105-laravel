@@ -36,7 +36,6 @@ class ProductsController extends Controller
     public function store(StoreProductRequest $request)
     {
 
-        dd($request);
         // dd($reqObject->price);
         // get all request data 
         $productName = $request->name;
@@ -57,7 +56,7 @@ class ProductsController extends Controller
         // inset into products (id,name,price,create_at);
         //redirect to index view
 
-        return to_route('products.index');
+        return to_route('products.index')->with("requestStatus", "product created successfully");
     }
 
 
