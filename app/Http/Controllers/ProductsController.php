@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -32,17 +33,10 @@ class ProductsController extends Controller
         $categories = Category::all();
         return view('products.create', ["categories" => $categories]);
     }
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
 
-        $request->validate([
-            "name" => ['required', 'min:5'],
-            "price" => "required|min:2"
-        ], [
-            "name" => ["required" => "please enter product name", "min" => "product name must be more than 5 CHr"],
-
-            "price" => ["required" => "please send product price!", "min" => "min price is two digit"]
-        ]);
+        dd($request);
         // dd($reqObject->price);
         // get all request data 
         $productName = $request->name;
