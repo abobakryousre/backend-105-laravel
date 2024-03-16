@@ -54,7 +54,11 @@
                     
                 </tbody>
               </table>
+              <div class="pagination justify-conent-center">
+                {{$products->links()}}
+              </div>
         </div>
+       
 @endsection
       
 

@@ -12,7 +12,7 @@ class ProductsController extends Controller
     public function index()
     {
         # select * from products 
-        $allProducts = Product::all();
+        $allProducts = Product::latest()->paginate(10);
         // $allProducts = Product::select("*")->get();
         return view('products.index', ["products" => $allProducts]);
     }
