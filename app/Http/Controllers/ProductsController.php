@@ -35,6 +35,14 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
 
+        $request->validate([
+            "name" => ['required', 'min:5'],
+            "price" => "required|min:2"
+        ], [
+            "name" => ["required" => "please enter product name", "min" => "product name must be more than 5 CHr"],
+
+            "price" => ["required" => "please send product price!", "min" => "min price is two digit"]
+        ]);
         // dd($reqObject->price);
         // get all request data 
         $productName = $request->name;
