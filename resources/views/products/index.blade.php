@@ -1,4 +1,11 @@
 @extends('layouts.app')
+
+<x-test-componenet :name="$products[1]->name" :home-location="$products[1]->price"> 
+</x-test-componenet>
+{{-- 
+<x-home >
+  <x-test-componenet> </x-test-componenet>
+</x-home > --}}
 @section('content')   
 @if(session()->has('requestStatus'))
 <div x-data="{ open: true }" x-init="setTimeout( () => open = false,3000)" >
