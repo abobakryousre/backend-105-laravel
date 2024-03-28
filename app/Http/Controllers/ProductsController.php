@@ -16,7 +16,11 @@ class ProductsController extends Controller
         # Where name LIKE "%$request->query('q')%"
 
         $allProducts = Product::latest()->filter($request->query)->paginate(10);
-        // $allProducts = Product::select("*")->get();
+
+        if ($request->has('q')) {
+            return view('partials.products._index', ["products" => $allProducts])->render();
+        }
+
         return view('products.index', ["products" => $allProducts]);
     }
 

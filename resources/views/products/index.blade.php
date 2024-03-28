@@ -10,8 +10,8 @@
 
 @endif
 
-<form class="d-flex" role="search" action="{{ route('products.index') }}" method="GET">
-  <input class="form-control me-2" placeholder="Search" aria-label="Search" name="q">
+<form class="d-flex" role="search" action="{{ route('products.index') }}" method="GET" onsubmit="handleSearch(event)">
+  <input class="form-control me-2" placeholder="Search" aria-label="Search" name="q" onkeydown="fetchSearchResult(event)" >
   <button class="btn btn-outline-primary" type="submit">Search</button>
 </form>
 
@@ -19,10 +19,12 @@
   <a href="{{ route('products.create') }}" class="btn btn-success">Add new Product</a>
 </div>
 
-<div class="text-center mt-4">
+<div class="text-center mt-4" id="container">
     @include('partials.products._index',["products" => $products])
 </div>
        
+<script src="{{asset('js/main.js')}}">
+</script>
 @endsection
       
 
