@@ -44,7 +44,7 @@ class ProductsController extends Controller
     {
 
         if ($request->hasFile('photo')) {
-            $photo = $request->file('photo')->store('public');
+            $photo = $request->file('photo')->store();
         }
         // dd($reqObject->price);
         // get all request data 
