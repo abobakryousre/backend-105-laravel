@@ -43,10 +43,16 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Request $request)
+    public function show(Request $request, int $orderId)
     {
 
-        $order = Order::find($request->route('order'));
+        // return response()->json([
+        //     'getting orderID from function argument ' => $orderId,
+        //     'getting orderID from request route method ' => $request->route('order')
+        // ]);
+        // $order = Order::find($request->route('order'));
+
+        $order = Order::find($orderId);
         if (!$order) return response()->json(["message" => "order not found"], 404);
 
         $result = [
