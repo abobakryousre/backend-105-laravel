@@ -1,12 +1,12 @@
 <?php
 
+
 namespace App\Http\Controllers\API;
 
+use App\Helper\HttpResponses;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
-
-use function PHPUnit\Framework\returnSelf;
 
 class OrderController extends Controller
 {
@@ -16,7 +16,7 @@ class OrderController extends Controller
     public function index()
     {
         $allOrders = Order::all();
-        return response()->json(["orders" => $allOrders]);
+        return response()->json(["message" => HttpResponses::SUCCESS->message(), "orders" => $allOrders], HttpResponses::SUCCESS->value);
     }
 
     /**
@@ -34,10 +34,10 @@ class OrderController extends Controller
             "name" => $request->name
         ]);
         $result = [
-            "message" => "Order Created Successfully",
+            "message" => HttpResponse::SUCCESS->message(),
             "data" => $newOrder
         ];
-        return response()->json($result, 201);
+        return response()->json($result, HttpResponse::SUCCESS->value);
     }
 
     /**
